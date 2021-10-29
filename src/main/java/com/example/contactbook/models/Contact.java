@@ -1,9 +1,7 @@
 package com.example.contactbook.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Contact {
@@ -15,6 +13,9 @@ public class Contact {
     private String firstName;
 
     private String lastName;
+
+    @OneToMany(mappedBy = "contact")
+    private List<PhoneNumber> phoneNumbers;
 
     public Contact() {
     }
