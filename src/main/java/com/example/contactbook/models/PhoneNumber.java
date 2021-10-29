@@ -18,13 +18,17 @@ public class PhoneNumber {
     @ManyToOne
     private Contact contact;
 
+    @Embedded
+    private Address address;
+
     public PhoneNumber() {
     }
 
-    public PhoneNumber(String number, PhoneType phoneType, Contact contact) {
+    public PhoneNumber(String number, PhoneType phoneType, Contact contact, Address address) {
         this.number = number;
         this.phoneType = phoneType;
         this.contact = contact;
+        this.address = address;
     }
 
     public int getId() {
@@ -53,5 +57,13 @@ public class PhoneNumber {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
