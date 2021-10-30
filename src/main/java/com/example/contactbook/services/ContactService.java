@@ -1,42 +1,37 @@
 package com.example.contactbook.services;
 
-import com.example.contactbook.exceptions.NoSuchcontactException;
+import com.example.contactbook.exceptions.NoSuchContactFoundException;
 import com.example.contactbook.models.Contact;
 import com.example.contactbook.repositories.ContactRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ContactService {
 
-    private ContactRepository contactRepository;
+    private final ContactRepository contactRepository;
 
     public ContactService(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
     }
 
-    public List<Contact> getAllContacts(){
+    public List<Contact> findAllContacts(){
        return contactRepository.findAll();
     }
 
     public Contact findContactById(int id){
         return contactRepository.findById(id)
-                .orElseThrow(() -> new NoSuchcontactException("no contact available with id: " + id));
+                .orElseThrow(() -> new NoSuchContactFoundException("no contact available with id: " + id));
     }
 
     public Contact findContactByEmail(String email){
         return contactRepository.findContactByEmail(email)
-                .orElseThrow(() -> new NoSuchcontactException("no contact with email: " + email));
+                .orElseThrow(() -> new NoSuchContactFoundException("no contact with email: " + email));
     }
 
-    public List<Contact> getContactsByFirstName(String firstName){
-        return contactRepository.findContactsByFirstName(firstName);
-    }
-
-    public List<Contact> getContactsByLastName(String lastName){
-        return contactRepository.findContactsByLastName(lastName);
+    public List<Contact> findContactsByFirstNameOrLastName(String name){
+        return contactRepository.findContactByFirstNameOrLastName(name);
     }
 
 
@@ -48,7 +43,7 @@ public class ContactService {
         contactRepository.deleteById(id);
     }
 
-    public void updateContact(int id, Contact contact){
+    public void updateContactById(int id, Contact contact){
         Contact contactById = findContactById(id);
 
         contactById.setLastName(contact.getLastName());

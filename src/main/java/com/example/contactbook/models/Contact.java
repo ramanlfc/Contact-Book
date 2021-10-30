@@ -16,7 +16,7 @@ public class Contact {
 
     private String email;
 
-    @OneToMany(mappedBy = "contact")
+    @OneToMany(mappedBy = "contact", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<PhoneNumber> phoneNumbers;
 
     public Contact() {
