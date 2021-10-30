@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address {
 
-    private String addressLine;
+    private String streetAddress;
     private String city;
     private String state;
     private String country;
@@ -14,20 +14,20 @@ public class Address {
     public Address() {
     }
 
-    public Address(String addressLine, String city, String state, String country, String pincode) {
-        this.addressLine = addressLine;
+    public Address(String streetAddress, String city, String state, String country, String pincode) {
+        this.streetAddress = streetAddress;
         this.city = city;
         this.state = state;
         this.country = country;
         this.pincode = pincode;
     }
 
-    public String getAddressLine() {
-        return addressLine;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setAddressLine(String addressLine) {
-        this.addressLine = addressLine;
+    public void setStreetAddress(String addressLine) {
+        this.streetAddress = addressLine;
     }
 
     public String getCity() {

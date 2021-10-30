@@ -14,15 +14,19 @@ public class Contact {
 
     private String lastName;
 
+    private String email;
+
     @OneToMany(mappedBy = "contact")
     private List<PhoneNumber> phoneNumbers;
 
     public Contact() {
     }
 
-    public Contact(String firstName, String lastName) {
+    public Contact(String firstName, String lastName, String email, List<PhoneNumber> phoneNumbers) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.phoneNumbers = phoneNumbers;
     }
 
     public void setFirstName(String firstName) {
@@ -37,12 +41,28 @@ public class Contact {
         return id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
     public String getLastName() {
         return lastName;
+    }
+
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 }
 
