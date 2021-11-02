@@ -1,5 +1,7 @@
 package com.example.contactbook.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class Contact {
 
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "contact", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<PhoneNumber> phoneNumbers;
 
